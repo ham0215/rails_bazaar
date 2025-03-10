@@ -15,14 +15,14 @@ default: &default
 
 development:
   <<: *default
-  database: rails_bazaar_development
+  database: feature_user_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: rails_bazaar_test
+  database: feature_user_test
 
 # SQLite3 write its data on the local filesystem, as such it requires
 # persistent disks. If you are deploying to a managed service, you should
