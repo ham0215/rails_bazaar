@@ -13,10 +13,10 @@ services:
       EDITOR: vim
     tty: true
     stdin_open: true
-    command: bundle exec rails -s -b 0.0.0.0
+    command: bundle exec rails s -b 0.0.0.0
   db:
     image: mariadb:11.7.2
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
-      - 3306:3306
+      - 3377:3306
