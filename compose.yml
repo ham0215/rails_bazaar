@@ -1,0 +1,42 @@
+services:
+  rails_bazaar:
+    build:
+      context: ./apps/rails_bazaar
+    volumes:
+      - ./apps/rails_bazaar:/app
+    ports:
+      - 3077:3000
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      EDITOR: vim
+    tty: true
+    stdin_open: true
+    command: bundle exec rails s -b 0.0.0.0
+  feature_user:
+    build:
+      context: ./engines/feature_user
+    volumes:
+      - ./engines/feature_user:/app
+    ports:
+      - 3078:3000
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      EDITOR: vim
+    tty: true
+    stdin_open: true
+    command: bundle exec rails s -b 0.0.0.0
+  db:
+    image: mariadb:11.7.2
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - 3377:3306
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:
