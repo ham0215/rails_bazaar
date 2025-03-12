@@ -7,7 +7,8 @@ RUN apt-get update -qq && \
 
 WORKDIR /app
 RUN gem install bundler
-COPY Gemfile Gemfile.lock .tool-versions /app/
+COPY Gemfile Gemfile.lock .tool-versions engines /app/
+COPY engines/ /app/engines/
 
 RUN bundle install -j4
 

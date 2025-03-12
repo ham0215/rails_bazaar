@@ -1,3 +1,9 @@
+PATH
+  remote: engines/feature_user
+  specs:
+    feature_user (0.1.0)
+      rails (>= 8.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -261,6 +267,7 @@ PLATFORMS
 DEPENDENCIES
   brakeman
   debug
+  feature_user!
   puma (>= 5.0)
   rails (~> 8.0.1)
   rubocop-rails-omakase
