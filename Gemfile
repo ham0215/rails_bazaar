@@ -40,6 +40,5 @@ end
 
 # Internal engines
 gem "feature_user", path: "engines/feature_user"
-
 gem "feature_team", path: "engines/feature_team"
 gem "feature_review", path: "engines/feature_review"

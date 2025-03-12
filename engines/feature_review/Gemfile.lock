@@ -1,4 +1,10 @@
 PATH
+  remote: ../feature_user
+  specs:
+    feature_user (0.1.0)
+      rails (>= 8.0.1)
+
+PATH
   remote: .
   specs:
     feature_review (0.1.0)
@@ -269,6 +275,7 @@ DEPENDENCIES
   debug
   factory_bot_rails
   feature_review!
+  feature_user!
   propshaft
   puma
   rspec-rails
