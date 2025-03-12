@@ -10,7 +10,7 @@ To add a new Rails engine to the application:
 
 1. Generate a new engine with the following command:
    ```bash
-   rails plugin new engines/feature_name --mountable --full --dummy-path=test/dummy
+   rails plugin new engines/feature_team --mountable --api --database=mariadb-trilogy --skip-active-job --skip-action-mailer --skip-ci --skip-git --skip-action-cable --skip-action-text --skip-active-storage --skip-sprockets --skip-javascript
    ```
 
 2. Add the engine to your Gemfile:

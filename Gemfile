@@ -24,9 +24,6 @@ gem "thruster", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
-# Internal engines
-gem "feature_user", path: "engines/feature_user"
-
 group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
@@ -40,3 +37,8 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
+
+# Internal engines
+gem "feature_user", path: "engines/feature_user"
+
+gem "feature_team", path: "engines/feature_team"
