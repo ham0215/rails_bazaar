@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 # Specify your gem's dependencies in feature_user.gemspec.
@@ -10,12 +12,13 @@ gem "trilogy"
 gem "propshaft"
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
+  gem "rspec-rails"
+
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
+
+  gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
-
-# Start debugger with binding.b [https://github.com/ruby/debug]
-# gem "debug", ">= 1.0.0"
