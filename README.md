@@ -1,24 +1,50 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails application with multiple Rails engines.
 
-Things you may want to cover:
+## Rails Engine Management
 
-* Ruby version
+### Adding a New Rails Engine
 
-* System dependencies
+To add a new Rails engine to the application:
 
-* Configuration
+1. Generate a new engine with the following command:
+   ```bash
+   rails plugin new engines/feature_name --mountable --full --dummy-path=test/dummy
+   ```
 
-* Database creation
+2. Add the engine to your Gemfile:
+   ```ruby
+   gem 'feature_name', path: 'engines/feature_name'
+   ```
 
-* Database initialization
+3. Install the gem:
+   ```bash
+   bundle install
+   ```
 
-* How to run the test suite
+4. Mount the engine in your routes file (`config/routes.rb`):
+   ```ruby
+   Rails.application.routes.draw do
+     mount FeatureName::Engine, at: '/feature_name'
+   end
+   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Copying Engine Migrations to Main Application
 
-* Deployment instructions
+To copy the migrations from a Rails engine to the main application and run them:
 
-* ...
+1. Copy the migrations from an engine to the main application:
+   ```bash
+   bin/rails feature_name:install:migrations
+   ```
+
+2. Run the pending migrations:
+   ```bash
+   bin/rails db:migrate
+   ```
+
+To copy migrations from all engines at once:
+```bash
+bin/rails railties:install:migrations
+```
