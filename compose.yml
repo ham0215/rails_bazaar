@@ -44,6 +44,21 @@ services:
     tty: true
     stdin_open: true
     command: bundle exec rails s -b 0.0.0.0
+  feature_review:
+    build:
+      context: ./engines/feature_review
+    volumes:
+      - ./engines/feature_review:/app
+    ports:
+      - 3080:3000
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      EDITOR: vim
+    tty: true
+    stdin_open: true
+    command: bundle exec rails s -b 0.0.0.0
   db:
     image: mariadb:11.7.2
     environment:

@@ -7,8 +7,8 @@ RUN apt-get update -qq && \
 
 WORKDIR /app
 RUN gem install bundler
-COPY feature_team.gemspec Gemfile Gemfile.lock /app/
-COPY lib/feature_team/version.rb /app/lib/feature_team/version.rb
+COPY feature_review.gemspec Gemfile Gemfile.lock /app/
+COPY lib/feature_review/version.rb /app/lib/feature_review/version.rb
 
 RUN bundle install -j4
 
