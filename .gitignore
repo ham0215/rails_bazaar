@@ -15,7 +15,10 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-**/log/*
+/engines/**/log/*
+/engines/**/tmp/*
+!/engines/**/log/.keep
+!/engines/**/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
