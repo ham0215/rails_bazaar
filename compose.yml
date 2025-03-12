@@ -16,9 +16,11 @@ services:
     command: bundle exec rails s -b 0.0.0.0
   feature_user:
     build:
-      context: ./engines/feature_user
+      context: ./engines
+      args:
+        FEATURE_NAME: feature_user
     volumes:
-      - ./engines/feature_user:/app
+      - ./engines:/app
     ports:
       - 3078:3000
     depends_on:
@@ -31,9 +33,11 @@ services:
     command: bundle exec rails s -b 0.0.0.0
   feature_team:
     build:
-      context: ./engines/feature_team
+      context: ./engines
+      args:
+        FEATURE_NAME: feature_team
     volumes:
-      - ./engines/feature_team:/app
+      - ./engines:/app
     ports:
       - 3079:3000
     depends_on:
@@ -46,9 +50,11 @@ services:
     command: bundle exec rails s -b 0.0.0.0
   feature_review:
     build:
-      context: ./engines/feature_review
+      context: ./engines
+      args:
+        FEATURE_NAME: feature_review
     volumes:
-      - ./engines/feature_review:/app
+      - ./engines:/app
     ports:
       - 3080:3000
     depends_on:
