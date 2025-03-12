@@ -16,9 +16,9 @@ services:
     command: bundle exec rails s -b 0.0.0.0
   feature_user:
     build:
-      context: ./engines/feature_user
+      context: ./apps/rails_bazaar/engines/feature_user
     volumes:
-      - ./engines/feature_user:/app
+      - ./apps/rails_bazaar/engines/feature_user:/app
     ports:
       - 3078:3000
     depends_on:
