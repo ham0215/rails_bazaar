@@ -17,6 +17,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_12_171610) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_feature_review_reviews_on_user_id"
+    t.index [ "user_id" ], name: "index_feature_review_reviews_on_user_id"
   end
 end
