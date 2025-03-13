@@ -5,6 +5,10 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
@@ -49,8 +53,8 @@ jobs:
         run: docker compose up -d db --wait
       - name: Wait DB
         run: |
-          until nc -z localhost 3306; do
-            >&2 echo "Waiting for MySQL on port 3306..."
+          until nc -z localhost $[DB_PORT}]; do
+            >&2 echo "Waiting for MySQL on port $[DB_PORT}..."
             sleep 1
           done
       - name: Set up Ruby
