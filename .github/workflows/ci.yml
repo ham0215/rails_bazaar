@@ -47,6 +47,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Start DB
         run: docker compose up -d db --wait
+      - name: Wait for DB to be healthy
+        run: |
+          while [ "$(docker compose ps -q --filter status=healthy db)" = "" ]; do
+            echo "Waiting for DB to be healthy..."
+            sleep 5
+          done
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:

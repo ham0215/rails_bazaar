@@ -73,11 +73,6 @@ services:
       - 3377:3306
     volumes:
       - mariadb_data:/var/lib/mysql
-    healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root']
-      interval: 5s
-      timeout: 3s
-      retries: 10
 
 volumes:
   mariadb_data:
