@@ -43,7 +43,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Start DB
-        run: docker compose up -d db redis --wait
+        run: docker compose up -d db --wait
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
