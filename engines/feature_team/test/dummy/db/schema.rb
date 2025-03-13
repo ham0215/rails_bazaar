@@ -16,8 +16,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_12_172352) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_feature_team_team_users_on_team_id"
-    t.index ["user_id"], name: "index_feature_team_team_users_on_user_id"
+    t.index [ "team_id" ], name: "index_feature_team_team_users_on_team_id"
+    t.index [ "user_id" ], name: "index_feature_team_team_users_on_user_id"
   end
 
   create_table "feature_team_teams", charset: "utf8mb4", collation: "utf8mb4_uca1400_ai_ci", force: :cascade do |t|
