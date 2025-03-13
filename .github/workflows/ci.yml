@@ -58,10 +58,7 @@ jobs:
           bundler-cache: true
       - name: Prepare DB
         run: |
-          until bundle exec rails db:create do
-            >&2 echo "Waiting for MySQL ..."
-            sleep 1
-          done
+          bundle exec rails db:create
       - name: Test
         run: |
           bundle exec rspec
