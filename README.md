@@ -48,3 +48,41 @@ To copy migrations from all engines at once:
 ```bash
 bin/rails railties:install:migrations
 ```
+
+## Custom Tasks
+
+The application includes several custom rake tasks located in `lib/tasks` to help with development and testing. These tasks can be executed as follows:
+
+### Prerequisites
+
+Before running any custom tasks, you need to start the Docker containers:
+
+```bash
+docker compose up --build -d
+```
+
+This command builds and starts the Docker containers in detached mode. Make sure the containers are running before executing any of the tasks below.
+
+### Code Quality and Testing
+
+To run these tasks, use the following commands:
+
+1. Run RuboCop (static code analyzer):
+   ```bash
+   bin/rails rails_bazaar:rubocop
+   ```
+   This runs the RuboCop linter inside the Docker container to check for code style violations.
+
+2. Run Brakeman (security scanner):
+   ```bash
+   bin/rails rails_bazaar:brakeman
+   ```
+   This runs the Brakeman security scanner inside the Docker container to check for security vulnerabilities.
+
+3. Run RSpec tests:
+   ```bash
+   bin/rails rails_bazaar:rspec
+   ```
+   This executes all RSpec tests inside the Docker container.
+
+These commands are designed to be run in the context of your Docker environment. They are helpful for maintaining code quality and ensuring your application is well-tested and secure.

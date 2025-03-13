@@ -1,0 +1,12 @@
+---
+# Brakeman configuration file
+# https://brakemanscanner.org/docs/options/
+
+# Exclude engines directory from scanning
+skip_files:
+  - "engines/**/*"
+
+# Other common options you might want to use
+#ignore_model_output: false
+#ignore_attr_protected: false
+#run_all_checks: false
