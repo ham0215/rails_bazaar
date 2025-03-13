@@ -47,11 +47,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Start DB
         run: docker compose up -d db --wait
-      - name: Wait for DB to be healthy
+      - name: Wait DB
         run: |
-          while [ "$(docker compose ps -q --filter status=healthy db)" = "" ]; do
-            echo "Waiting for DB to be healthy..."
-            sleep 5
+          until nc -z localhost 3306; do
+            >&2 echo "Waiting for MySQL on port 3306..."
+            sleep 1
           done
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
