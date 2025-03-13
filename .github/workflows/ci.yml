@@ -45,22 +45,35 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DB_HOST: 127.0.0.1
-      DB_PORT: 3377
+      DB_PORT: 3306
+
+    services:
+      db:
+        image: mariadb:11.7.2
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Start DB
-        run: docker compose up -d db --wait
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .tool-versions
           bundler-cache: true
-      - name: Sleep
-        run: sleep 5
+
       - name: Prepare DB
         run: |
           bundle exec rails db:create
+
       - name: Test
         run: |
           bundle exec rspec
