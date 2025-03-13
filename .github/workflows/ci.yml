@@ -36,3 +36,22 @@ jobs:
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Start DB
+        run: docker compose up -d db redis --wait
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .tool-versions
+          bundler-cache: true
+      - name: Prepare DB
+        run: |
+          bundle exec rails db:create
+      - name: Test
+        run: |
+          bundle exec rspec
