@@ -39,11 +39,14 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3377
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Start DB
-        run: docker compose up -d db redis --wait
+        run: docker compose up -d db --wait
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
