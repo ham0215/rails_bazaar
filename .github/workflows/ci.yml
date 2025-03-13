@@ -53,8 +53,8 @@ jobs:
         run: docker compose up -d db --wait
       - name: Wait DB
         run: |
-          until nc -z localhost $[DB_PORT}]; do
-            >&2 echo "Waiting for MySQL on port $[DB_PORT}..."
+          until nc -z localhost ${DB_PORT}; do
+            >&2 echo "Waiting for MySQL on port ${DB_PORT}..."
             sleep 1
           done
       - name: Set up Ruby
