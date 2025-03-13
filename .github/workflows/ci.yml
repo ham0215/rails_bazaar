@@ -39,6 +39,9 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3377
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
