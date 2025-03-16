@@ -1,0 +1,72 @@
+name: Feature User CI
+
+on:
+  pull_request:
+    paths:
+      - 'engines/feature_user/**'
+  push:
+    branches: [main]
+    paths:
+      - 'engines/feature_user/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scan_ruby:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .tool-versions
+          bundler-cache: true
+
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: engines/feature_user/bin/brakeman --no-pager
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .tool-versions
+          bundler-cache: true
+
+      - name: Lint code for consistent style
+        run: engines/feature_user/bin/rubocop -f github
+
+  test:
+    runs-on: ubuntu-latest
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3377
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Start DB
+        run: docker compose up -d db --wait
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .tool-versions
+          bundler-cache: true
+      - name: Sleep
+        run: sleep 5
+      - name: Prepare DB
+        run: |
+          cd engines/feature_user
+          engines/feature_user/test/dummy/bin/rails db:create
+      - name: Test
+        run: |
+          cd engines/feature_user
+          bundle exec rspec
