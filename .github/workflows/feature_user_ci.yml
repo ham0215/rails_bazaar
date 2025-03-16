@@ -28,7 +28,7 @@ jobs:
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
-        run: engines/feature_user/bin/brakeman --no-pager
+        run: cd engines/feature_user/; bin/brakeman --no-pager
 
   lint:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
           bundler-cache: true
 
       - name: Lint code for consistent style
-        run: engines/feature_user/bin/rubocop -f github
+        run: cd engines/feature_user/; bin/rubocop -f github
 
   test:
     runs-on: ubuntu-latest
@@ -64,9 +64,7 @@ jobs:
         run: sleep 5
       - name: Prepare DB
         run: |
-          cd engines/feature_user
-          engines/feature_user/bin/rails db:create
+          cd engines/feature_user/; bin/rails db:create
       - name: Test
         run: |
-          cd engines/feature_user
-          engines/feature_user/bin/rspec
+          cd engines/feature_user/; bin/rspec
