@@ -1,9 +1,13 @@
-name: CI
+name: Feature User CI
 
 on:
   pull_request:
+    paths:
+      - 'engines/feature_user/**'
   push:
     branches: [main]
+    paths:
+      - 'engines/feature_user/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -23,8 +27,10 @@ jobs:
           ruby-version: .tool-versions
           bundler-cache: true
 
+      - name: bundle install
+        run: cd engines/feature_user/; bundle install
       - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bin/brakeman --no-pager
+        run: cd engines/feature_user/; bundle install; bin/brakeman --no-pager
 
   lint:
     runs-on: ubuntu-latest
@@ -38,8 +44,10 @@ jobs:
           ruby-version: .tool-versions
           bundler-cache: true
 
+      - name: bundle install
+        run: cd engines/feature_user/; bundle install
       - name: Lint code for consistent style
-        run: bin/rubocop -f github
+        run: cd engines/feature_user/; bin/rubocop -f github
 
   test:
     runs-on: ubuntu-latest
@@ -58,9 +66,11 @@ jobs:
           bundler-cache: true
       - name: Sleep
         run: sleep 5
+      - name: bundle install
+        run: cd engines/feature_user/; bundle install
       - name: Prepare DB
         run: |
-          bin/rails db:create
+          cd engines/feature_user/; bin/rails db:create
       - name: Test
         run: |
-          bin/rspec
+          cd engines/feature_user/; bin/rspec
