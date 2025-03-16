@@ -60,7 +60,7 @@ jobs:
         run: sleep 5
       - name: Prepare DB
         run: |
-          bundle exec rails db:create
+          bin/rails db:create
       - name: Test
         run: |
-          bundle exec rspec
+          bin/rspec
