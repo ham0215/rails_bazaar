@@ -273,7 +273,8 @@ GEM
     thruster (0.1.12-x86_64-darwin)
     thruster (0.1.12-x86_64-linux)
     timeout (0.4.3)
-    trilogy (2.9.0)
+    trilogy (2.10.0)
+      bigdecimal
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
@@ -311,7 +312,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails-omakase
   thruster
-  trilogy (~> 2.7)
+  trilogy (~> 2.10)
   tzinfo-data
 
 BUNDLED WITH
